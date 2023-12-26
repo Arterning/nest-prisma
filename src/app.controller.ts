@@ -8,11 +8,15 @@ import {
   Delete,
   Query,
   UseFilters,
+  ParseIntPipe,
+  HttpStatus,
+  UsePipes,
 } from '@nestjs/common'
 import { PrismaService } from './prisma.service'
 import { User as UserModel, Post as PostModel, Prisma } from '@prisma/client'
 import { ForbiddenException } from './exception/forbidden.exception';
 import { HttpExceptionFilter } from './config/http-exception.filter';
+import { CustomValidationPipe } from './config/validation.pipe';
 
 @Controller()
 export class AppController {
@@ -21,6 +25,37 @@ export class AppController {
   @Get()
   getHello(): string {
     return 'Hello World!'
+  }
+
+  @Get('pipeline/v1/:id')
+  async pipeline_v1(@Param('id', ParseIntPipe) id: number) {
+    return {
+      raw: id,
+      after: id + 3
+    };
+  }
+
+  @Get('pipeline/v2/:id')
+  async pipeline_v2( 
+    @Param('id', new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }))
+  id: number) {
+    return {
+      raw: id,
+      after: id + 3
+    };
+  }
+
+  @Post('pipeline/v3')
+  @UsePipes(new CustomValidationPipe())
+  async pipeline_v3(@Body() request: {
+    id?: number,
+    name?: string,
+    error?: string,
+  }) {
+    return {
+      raw: 1,
+      after: 4
+    };
   }
 
   @Get('findError')

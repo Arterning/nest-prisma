@@ -4,3 +4,33 @@
 
 ###
 GET {{host}}/findError
+
+
+###
+GET {{host}}/pipeline/v1/213
+
+###
+GET {{host}}/pipeline/v1/str
+
+
+###
+GET {{host}}/pipeline/v2/str
+
+
+###
+POST {{host}}/pipeline/v3
+Content-Type: application/json
+
+{
+    "name":"good"
+}
+
+
+###
+POST {{host}}/pipeline/v3
+Content-Type: application/json
+
+{
+    "name":"good",
+    "error":"oops"
+}
