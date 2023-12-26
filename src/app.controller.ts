@@ -24,7 +24,7 @@ export class AppController {
   }
 
   @Get('findError')
-  @UseFilters(new HttpExceptionFilter())
+  // @UseFilters(new HttpExceptionFilter())
   async findError() {
     throw new ForbiddenException();
   }
