@@ -1,0 +1,10 @@
+-- CreateTable
+CREATE TABLE "Attachment" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" DATETIME NOT NULL,
+    "name" TEXT NOT NULL,
+    "size" INTEGER NOT NULL,
+    "url" TEXT NOT NULL,
+    "pid" INTEGER NOT NULL
+);
