@@ -1,0 +1,42 @@
+###
+@host = http://localhost:3000
+@token = MDUyMDBjYWM1N2ZlM2M3NmNkNmZiMDNkODkxNTg2YThlMTliODFhMC1lYjM5LTQyMzMtYWM1YS02MGMxYTc4MjQ1N2Q
+
+### index
+GET {{host}}
+
+
+### get post
+GET {{host}}/post/123
+
+
+### feed
+GET {{host}}/feed
+
+
+### users
+GET {{host}}/users
+
+
+### drafts
+GET {{host}}/user/3/drafts
+
+### signup
+POST {{host}}/signup
+Content-Type: application/json
+
+{
+    "name": "Arterning",
+    "email":"nilu@prisma.io"
+}
+
+
+###
+POST {{host}}/post
+Content-Type: application/json
+
+{
+    "title": "Post One",
+    "content":"AAAA",
+    "authorEmail":"nilu@prisma.io"
+}
