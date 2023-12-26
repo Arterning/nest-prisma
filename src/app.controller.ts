@@ -7,9 +7,12 @@ import {
   Put,
   Delete,
   Query,
+  UseFilters,
 } from '@nestjs/common'
 import { PrismaService } from './prisma.service'
 import { User as UserModel, Post as PostModel, Prisma } from '@prisma/client'
+import { ForbiddenException } from './exception/forbidden.exception';
+import { HttpExceptionFilter } from './config/http-exception.filter';
 
 @Controller()
 export class AppController {
@@ -18,6 +21,12 @@ export class AppController {
   @Get()
   getHello(): string {
     return 'Hello World!'
+  }
+
+  @Get('findError')
+  @UseFilters(new HttpExceptionFilter())
+  async findError() {
+    throw new ForbiddenException();
   }
 
 
