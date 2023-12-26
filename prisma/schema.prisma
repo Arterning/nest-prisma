@@ -10,6 +10,7 @@ datasource db {
 model User {
   id    Int     @id @default(autoincrement())
   email String  @unique
+  birthDate DateTime?
   name  String?
   posts Post[]
 }
